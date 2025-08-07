@@ -1,4 +1,3 @@
-version: '3.8'
 
 services:
   mysqldb:
@@ -43,6 +42,10 @@ services:
         - REACT_APP_API_BASE_URL=$CLIENT_API_BASE_URL
     ports:
       - $REACT_LOCAL_PORT:$REACT_DOCKER_PORT
+    volumes:
+      - type: bind
+        source: /home/stephanie/hackhers-root/nginx.conf
+        target: /etc/nginx/nginx.conf
     networks:
       - frontend  
 

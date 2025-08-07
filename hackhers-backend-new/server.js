@@ -9,7 +9,7 @@ app.use(express.static(path));
 
 //cross origin requests are nesessary if you're using fetch or want special CSS things that can be used across browsers
 var corsOptions = {
-  origin: process.env.CLIENT_ORIGIN || "http://localhost:8081"
+  origin: process.env.CLIENT_ORIGIN || "http://localhost:8888" || "http://127.0.0.1:8888"
 };
 
 app.use(cors(corsOptions));
@@ -29,7 +29,10 @@ app.get("/", (req, res) => {
 // set port, listen for requests
 
 const PORT = process.env.NODE_DOCKER_PORT || 8080;
+
 require("./app/routes/participant.routes.js")(app);
+require("./app/routes/volunteer.routes.js")(app);
+require("./app/routes/volunteer_time.routes.js")(app);
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}.`);
 });
