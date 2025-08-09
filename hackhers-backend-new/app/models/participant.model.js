@@ -19,7 +19,18 @@ const Participant = function(participant){
 	this.arrived = participant.arrived;
 	this.date_signed_up = participant.date_signed_up;
 };
+Participant.getAllEmails = (result) => {
+  conn.query("SELECT partic_email FROM dbParticipants_2025", (err, res) => {
+    if (err) {
+      console.log("error: ", err);
+      result(null, err);
+      return;
+    }
 
+    console.log("participant emails: ", res);
+    result(null, res);
+  });
+};
 Participant.create = (newParticipant, result) => {
 	let post = {
 		partic_email: newParticipant.partic_email, 

@@ -23,7 +23,6 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.get("/", (req, res) => {
   res.sendFile(path + "index.html");
 });
-
 //require("./app/routes/tutorial.routes.js")(app);
 
 // set port, listen for requests
